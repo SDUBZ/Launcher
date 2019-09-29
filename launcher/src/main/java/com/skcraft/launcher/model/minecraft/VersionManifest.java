@@ -33,6 +33,7 @@ public class VersionManifest {
     // minecraftArguments exists only up to 1.12.2
     private String minecraftArguments;
 <<<<<<< HEAD
+<<<<<<< HEAD
     // beginning with snapshot 17w43a, it starts getting complicated
     private Arguments arguments;
     private String mainClass;
@@ -48,12 +49,17 @@ public class VersionManifest {
     @JsonIgnore
     private URL fetchURL;
 =======
+=======
+>>>>>>> 113update/master
     private Arguments arguments;
     private String mainClass;
     private int minimumLauncherVersion;
     private LinkedHashSet<Library> libraries;
     private HashMap<String, String> assetIndex;
+<<<<<<< HEAD
 >>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
+=======
+>>>>>>> 113update/master
 
     @JsonIgnore
     public String getAssetsIndex() {
@@ -74,6 +80,7 @@ public class VersionManifest {
         }
         return result;
     }
+<<<<<<< HEAD
 
     @JsonIgnore
     public void addLibraries(LinkedHashSet<Library> libs) {
@@ -143,5 +150,7 @@ public class VersionManifest {
     public List<String> getOSDependentJVMArgs(Environment environment) {
         return (arguments != null) ? arguments.getOSDependentArgs(environment) : null;
     }
+=======
+>>>>>>> 113update/master
 
 }

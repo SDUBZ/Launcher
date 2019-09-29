@@ -105,8 +105,11 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
             return version;
         } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return VersionManifest.getInstance(launcher.propUrl("versionManifestUrl"), manifest.getGameVersion());
 =======
+=======
+>>>>>>> 113update/master
             URL url = launcher.getMetaURL(manifest.getGameVersion());
             return HttpRequest
                     .get(url)
@@ -176,6 +179,7 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
         log.info("Enumerating assets to download...");
         progress = new DefaultProgress(-1, SharedLocale.tr("instanceUpdater.collectingAssets"));
 <<<<<<< HEAD
+<<<<<<< HEAD
         installAssets(installer, version, version.getAssetIndex().getAssetIndexURL(), assetsSources);
 =======
         URL assetUrl = version.getAssetIndex() != null
@@ -183,6 +187,9 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
                 : launcher.propUrl("assetsIndexUrl", version.getAssetsIndex());
         installAssets(installer, version, assetUrl, assetsSources);
 >>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
+=======
+        installAssets(installer, version, url(version.getAssetIndex().get("url")), assetsSources);
+>>>>>>> 113update/master
 
         log.info("Executing download phase...");
         progress = ProgressFilter.between(installer.getDownloader(), 0, 0.98);

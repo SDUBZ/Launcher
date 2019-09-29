@@ -317,6 +317,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
         List<String> args = builder.getArgs();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         String[] rawArgs = versionManifest.getVersionIndependentMinecraftArguments();
         if (rawArgs != null) {
 	        StrSubstitutor substitutor = new StrSubstitutor(getCommandSubstitutions());
@@ -324,6 +325,8 @@ public class Runner implements Callable<Process>, ProgressObservable {
 	            args.add(substitutor.replace(arg));
 	        }
 =======
+=======
+>>>>>>> 113update/master
 //        String[] rawArgs = versionManifest.getMinecraftArguments().split(" +");
         String[] rawArgs = versionManifest.getNewMinecraftArguments().split(" +");
         StrSubstitutor substitutor = new StrSubstitutor(getCommandSubstitutions());
