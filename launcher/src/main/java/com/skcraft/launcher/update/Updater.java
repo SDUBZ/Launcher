@@ -96,7 +96,6 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
 
         return instance;
     }
-
     private VersionManifest readVersionManifest(Manifest manifest) throws IOException, InterruptedException {
         // Check whether the package manifest contains an embedded version manifest,
         // otherwise we'll have to download the one for the given Minecraft version
@@ -105,7 +104,18 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
             mapper.writeValue(instance.getVersionPath(), version);
             return version;
         } else {
+<<<<<<< HEAD
             return VersionManifest.getInstance(launcher.propUrl("versionManifestUrl"), manifest.getGameVersion());
+=======
+            URL url = launcher.getMetaURL(manifest.getGameVersion());
+            return HttpRequest
+                    .get(url)
+                    .execute()
+                    .expectResponseCode(200)
+                    .returnContent()
+                    .saveContent(instance.getVersionPath())
+                    .asJson(VersionManifest.class);
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
         }
     }
 
@@ -139,9 +149,16 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
 
         // Install the .jar
         File jarPath = launcher.getJarPath(version);
+<<<<<<< HEAD
         URL jarSource = version.getClientDownloadURL();
         log.info("JAR at " + jarPath.getAbsolutePath() + ", fetched from " + jarSource);
         installJar(installer, jarPath, jarSource);
+=======
+        String downloadURLString = Launcher.getDownloadURL(version.getId());
+        URL downloadURL = new URL(downloadURLString);
+        log.info("JAR at " + jarPath.getAbsolutePath() + ", fetched from " + downloadURL);
+        installJar(installer, jarPath, downloadURL);
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
 
         // Download libraries
         log.info("Enumerating libraries to download...");
@@ -158,7 +175,14 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
         // Download assets
         log.info("Enumerating assets to download...");
         progress = new DefaultProgress(-1, SharedLocale.tr("instanceUpdater.collectingAssets"));
+<<<<<<< HEAD
         installAssets(installer, version, version.getAssetIndex().getAssetIndexURL(), assetsSources);
+=======
+        URL assetUrl = version.getAssetIndex() != null
+                ? url(version.getAssetIndex().get("url"))
+                : launcher.propUrl("assetsIndexUrl", version.getAssetsIndex());
+        installAssets(installer, version, assetUrl, assetsSources);
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
 
         log.info("Executing download phase...");
         progress = ProgressFilter.between(installer.getDownloader(), 0, 0.98);

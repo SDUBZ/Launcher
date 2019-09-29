@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * part of the new version manifest handling, see https://github.com/SKCraft/Launcher/issues/235
  * based on the pull request https://github.com/SKCraft/Launcher/pull/265 from EazFTW
@@ -55,3 +56,22 @@ public class Arguments {
         return null;
     }
 }
+=======
+package com.skcraft.launcher.model.minecraft;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
+import java.util.List;
+
+/**
+ * @author barpec12
+ */
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Arguments {
+
+    private List<Object> game;
+    private List<Object> jvm;
+}
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102

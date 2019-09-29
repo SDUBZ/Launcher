@@ -16,6 +16,7 @@ import lombok.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class VersionManifest {
     private String processArguments;
     // minecraftArguments exists only up to 1.12.2
     private String minecraftArguments;
+<<<<<<< HEAD
     // beginning with snapshot 17w43a, it starts getting complicated
     private Arguments arguments;
     private String mainClass;
@@ -45,10 +47,32 @@ public class VersionManifest {
 
     @JsonIgnore
     private URL fetchURL;
+=======
+    private Arguments arguments;
+    private String mainClass;
+    private int minimumLauncherVersion;
+    private LinkedHashSet<Library> libraries;
+    private HashMap<String, String> assetIndex;
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
 
     @JsonIgnore
     public String getAssetsIndex() {
         return getAssets() != null ? getAssets() : "legacy";
+    }
+    @JsonIgnore
+    public String getNewMinecraftArguments() {
+        return getMinecraftArguments() != null ? getMinecraftArguments() : getNewArguments();
+    }
+    @JsonIgnore
+    private String getNewArguments(){
+        String result = "";
+        if(getArguments()!=null)
+        for(Object obj:getArguments().getGame()){
+            if(obj instanceof String) {
+                result += ((String)obj + " ");
+            }
+        }
+        return result;
     }
 
     @JsonIgnore

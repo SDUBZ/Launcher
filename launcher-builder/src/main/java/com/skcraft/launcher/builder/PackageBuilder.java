@@ -23,7 +23,9 @@ import com.skcraft.launcher.LauncherUtils;
 import com.skcraft.launcher.model.loader.InstallProfile;
 import com.skcraft.launcher.model.minecraft.Library;
 import com.skcraft.launcher.model.minecraft.VersionManifest;
+import com.skcraft.launcher.model.modpack.LauncherJSON;
 import com.skcraft.launcher.model.modpack.Manifest;
+import com.skcraft.launcher.model.modpack.ModpackVersion;
 import com.skcraft.launcher.util.Environment;
 import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SimpleLogFormatter;
@@ -214,7 +216,6 @@ public class PackageBuilder {
     public void downloadLibraries(File librariesDir) throws IOException, InterruptedException {
         logSection("Downloading libraries...");
 
-        // TODO: Download libraries for different environments -- As of writing, this is not an issue
         Environment env = Environment.getInstance();
 
         for (Library library : loaderLibraries) {
@@ -241,6 +242,7 @@ public class PackageBuilder {
                         pathname = compressor.transformPathname(pathname);
                     }
 
+//                    URL url = new URL(library.getDownloadUrl(env));
                     URL url = new URL(baseUrl + pathname);
                     File tempFile = File.createTempFile("launcherlib", null);
 
@@ -296,12 +298,24 @@ public class PackageBuilder {
 
             log.info("Loaded version manifest from " + path.getAbsolutePath());
         } else {
+<<<<<<< HEAD
         versionManifest = VersionManifest.getInstance(HttpRequest.url(properties.getProperty("versionManifestUrl")), manifest.getGameVersion());
             log.info("Fetching version manifest from " + versionManifest.getFetchURL() + "...");
+=======
+            URL url = Launcher.getMetaURL(manifest.getGameVersion());
+
+            log.info("Fetching version manifest from " + url + "...");
+
+            manifest.setVersionManifest(HttpRequest
+                    .get(url)
+                    .execute()
+                    .expectResponseCode(200)
+                    .returnContent()
+                    .asJson(VersionManifest.class));
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
         }
         manifest.setVersionManifest(versionManifest);
     }
-
     public void writeManifest(@NonNull File path) throws IOException {
         logSection("Writing manifest...");
 

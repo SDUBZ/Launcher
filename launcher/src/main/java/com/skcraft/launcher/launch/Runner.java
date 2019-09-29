@@ -198,6 +198,12 @@ public class Runner implements Callable<Process>, ProgressObservable {
             // TODO: are command substitutions required here? Haven't seen any in the manifests I checked ...
             flags.add(flag);
         }
+
+        if(getEnvironment().getArch()=="x86"){
+            builder.getFlags().add("-Xss1M");
+        }
+        builder.getFlags().add("-Dminecraft.launcher.brand="+launcher.getProperties().getProperty("agentName"));
+        builder.getFlags().add("-Dminecraft.launcher.version="+launcher.getVersion());
     }
 
     /**
@@ -310,12 +316,20 @@ public class Runner implements Callable<Process>, ProgressObservable {
     private void addJarArgs() throws JsonProcessingException {
         List<String> args = builder.getArgs();
 
+<<<<<<< HEAD
         String[] rawArgs = versionManifest.getVersionIndependentMinecraftArguments();
         if (rawArgs != null) {
 	        StrSubstitutor substitutor = new StrSubstitutor(getCommandSubstitutions());
 	        for (String arg : rawArgs) {
 	            args.add(substitutor.replace(arg));
 	        }
+=======
+//        String[] rawArgs = versionManifest.getMinecraftArguments().split(" +");
+        String[] rawArgs = versionManifest.getNewMinecraftArguments().split(" +");
+        StrSubstitutor substitutor = new StrSubstitutor(getCommandSubstitutions());
+        for (String arg : rawArgs) {
+            args.add(substitutor.replace(arg));
+>>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
         }
     }
 
@@ -399,6 +413,7 @@ public class Runner implements Callable<Process>, ProgressObservable {
         Map<String, String> map = new HashMap<String, String>();
 
         map.put("version_name", versionManifest.getId());
+        map.put("version_type", versionManifest.getType());
 
         map.put("auth_access_token", session.getAccessToken());
         map.put("auth_session", session.getSessionToken());
