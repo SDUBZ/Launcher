@@ -17,6 +17,7 @@ import com.skcraft.launcher.install.Installer;
 import com.skcraft.launcher.model.minecraft.VersionManifest;
 import com.skcraft.launcher.model.modpack.Manifest;
 import com.skcraft.launcher.persistence.Persistence;
+import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SharedLocale;
 import lombok.Getter;
 import lombok.NonNull;
@@ -31,6 +32,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
+
+import static com.skcraft.launcher.util.HttpRequest.url;
 
 @Log
 public class Updater extends BaseUpdater implements Callable<Instance>, ProgressObservable {
@@ -104,12 +107,6 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
             mapper.writeValue(instance.getVersionPath(), version);
             return version;
         } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            return VersionManifest.getInstance(launcher.propUrl("versionManifestUrl"), manifest.getGameVersion());
-=======
-=======
->>>>>>> 113update/master
             URL url = launcher.getMetaURL(manifest.getGameVersion());
             return HttpRequest
                     .get(url)
@@ -118,7 +115,6 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
                     .returnContent()
                     .saveContent(instance.getVersionPath())
                     .asJson(VersionManifest.class);
->>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
         }
     }
 
@@ -152,16 +148,10 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
 
         // Install the .jar
         File jarPath = launcher.getJarPath(version);
-<<<<<<< HEAD
-        URL jarSource = version.getClientDownloadURL();
-        log.info("JAR at " + jarPath.getAbsolutePath() + ", fetched from " + jarSource);
-        installJar(installer, jarPath, jarSource);
-=======
         String downloadURLString = Launcher.getDownloadURL(version.getId());
         URL downloadURL = new URL(downloadURLString);
         log.info("JAR at " + jarPath.getAbsolutePath() + ", fetched from " + downloadURL);
         installJar(installer, jarPath, downloadURL);
->>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
 
         // Download libraries
         log.info("Enumerating libraries to download...");
@@ -178,18 +168,10 @@ public class Updater extends BaseUpdater implements Callable<Instance>, Progress
         // Download assets
         log.info("Enumerating assets to download...");
         progress = new DefaultProgress(-1, SharedLocale.tr("instanceUpdater.collectingAssets"));
-<<<<<<< HEAD
-<<<<<<< HEAD
-        installAssets(installer, version, version.getAssetIndex().getAssetIndexURL(), assetsSources);
-=======
         URL assetUrl = version.getAssetIndex() != null
                 ? url(version.getAssetIndex().get("url"))
                 : launcher.propUrl("assetsIndexUrl", version.getAssetsIndex());
         installAssets(installer, version, assetUrl, assetsSources);
->>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
-=======
-        installAssets(installer, version, url(version.getAssetIndex().get("url")), assetsSources);
->>>>>>> 113update/master
 
         log.info("Executing download phase...");
         progress = ProgressFilter.between(installer.getDownloader(), 0, 0.98);

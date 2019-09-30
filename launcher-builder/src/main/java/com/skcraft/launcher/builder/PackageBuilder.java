@@ -135,7 +135,8 @@ public class PackageBuilder {
         this.loaderLibraries.addAll(collected);
 
         VersionManifest version = manifest.getVersionManifest();
-        version.addLibraries(collected);
+        collected.addAll(version.getLibraries());
+        version.setLibraries(collected);
     }
 
     private void processLoader(LinkedHashSet<Library> loaderLibraries, File file, File librariesDir) throws IOException {
@@ -173,7 +174,7 @@ public class PackageBuilder {
                 List<Library> libraries = profile.getVersionInfo().getLibraries();
                 if (libraries != null) {
                     for (Library library : libraries) {
-                        if (!version.containsLibrary(library)) {
+                        if (!version.getLibraries().contains(library)) {
                             loaderLibraries.add(library);
                         }
                     }
@@ -291,17 +292,13 @@ public class PackageBuilder {
 
     public void readVersionManifest(File path) throws IOException, InterruptedException {
         logSection("Reading version manifest...");
-		
-		VersionManifest versionManifest;
+
         if (path.exists()) {
-            versionManifest = read(path, VersionManifest.class);
+            VersionManifest versionManifest = read(path, VersionManifest.class);
+            manifest.setVersionManifest(versionManifest);
 
             log.info("Loaded version manifest from " + path.getAbsolutePath());
         } else {
-<<<<<<< HEAD
-        versionManifest = VersionManifest.getInstance(HttpRequest.url(properties.getProperty("versionManifestUrl")), manifest.getGameVersion());
-            log.info("Fetching version manifest from " + versionManifest.getFetchURL() + "...");
-=======
             URL url = Launcher.getMetaURL(manifest.getGameVersion());
 
             log.info("Fetching version manifest from " + url + "...");
@@ -312,9 +309,7 @@ public class PackageBuilder {
                     .expectResponseCode(200)
                     .returnContent()
                     .asJson(VersionManifest.class));
->>>>>>> 10568259b7b3dbfde493c9bfc7de83a72eefc102
         }
-        manifest.setVersionManifest(versionManifest);
     }
     public void writeManifest(@NonNull File path) throws IOException {
         logSection("Writing manifest...");
