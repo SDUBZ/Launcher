@@ -1,8 +1,8 @@
 {
    "install":{
-      "profileName":"Fabric 1.15.2+build.14",
-      "path":"net.fabricmc:fabric-loader:0.7.8+build.184",
-      "filePath":"fabric-loader-0.7.8+build.184.jar"
+      "profileName":"Fabric 1.15.2+build.194",
+      "path":"net.fabricmc:fabric-loader:0.8.2+build.194",
+      "filePath":"fabric-loader:0.8.2+build.194.jar"
    },
    "versionInfo":{
       "minecraftArguments":"--username ${auth_player_name} --version ${version_name} --gameDir ${game_directory} --assetsDir ${assets_root} --assetIndex ${assets_index_name} --uuid ${auth_uuid} --accessToken ${auth_access_token} --userType ${user_type} --versionType Fabric",
