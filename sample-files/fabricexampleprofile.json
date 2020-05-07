@@ -10,15 +10,15 @@
       "libraries":[
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:fabric-loader:0.7.8+build.184"
+            "name":"net.fabricmc:fabric-loader:0.7.8+build.194"
          },
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:yarn:1.15.2+build.14"
+            "name":"net.fabricmc:yarn:1.15.2+build.15"
          },
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:tiny-mappings-parser:0.2.0.11"
+            "name":"net.fabricmc:tiny-mappings-parser:0.2.0.14"
          },
          {
             "url":"https://maven.fabricmc.net/",
@@ -26,7 +26,7 @@
          },
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:tiny-remapper:0.2.0.52"
+            "name":"net.fabricmc:tiny-remapper:0.2.2.68"
          },
          {
             "url":"https://maven.fabricmc.net/",
@@ -43,42 +43,42 @@
          {
             "downloads":{
                "artifact":{
-                  "path":"org/ow2/asm/asm/7.3.1/asm-7.3.1.jar"
+                  "path":"org/ow2/asm/asm/8.0.1/asm-8.0.1.jar"
                }
             },
-            "name":"org.ow2.asm:asm:7.3.1"
+            "name":"org.ow2.asm:asm:8.0.1"
          },
          {
             "downloads":{
                "artifact":{
-                  "path":"org/ow2/asm/asm-analysis/7.3.1/asm-analysis-7.3.1.jar"
+                  "path":"org/ow2/asm/asm-analysis/8.0.1/asm-analysis-8.0.1.jar"
                }
             },
-            "name":"org.ow2.asm:asm-analysis:7.3.1"
+            "name":"org.ow2.asm:asm-analysis:8.0.1"
          },
          {
             "downloads":{
                "artifact":{
-                  "path":"org/ow2/asm/asm-commons/7.3.1/asm-commons-7.3.1.jar"
+                  "path":"org/ow2/asm/asm-commons/8.0.1/asm-commons-8.0.1.jar"
                }
             },
-            "name":"org.ow2.asm:asm-commons:7.3.1"
+            "name":"org.ow2.asm:asm-commons:8.0.1"
          },
          {
             "downloads":{
                "artifact":{
-                  "path":"org/ow2/asm/asm-tree/7.3.1/asm-tree-7.3.1.jar"
+                  "path":"org/ow2/asm/asm-tree/8.0.1/asm-tree-8.0.1.jar"
                }
             },
-            "name":"org.ow2.asm:asm-tree:7.3.1"
+            "name":"org.ow2.asm:asm-tree:8.0.1"
          },
          {
             "downloads":{
                "artifact":{
-                  "path":"org/ow2/asm/asm-util/7.3.1/asm-util-7.3.1.jar"
+                  "path":"org/ow2/asm/asm-util/8.0.1/asm-util-8.0.1.jar"
                }
             },
-            "name":"org.ow2.asm:asm-util:7.3.1"
+            "name":"org.ow2.asm:asm-util:8.0.1"
          }
       ]
    }
