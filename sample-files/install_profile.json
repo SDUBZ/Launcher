@@ -10,7 +10,7 @@
       "libraries":[
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:fabric-loader:0.7.8+build.194"
+            "name":"net.fabricmc:fabric-loader:0.8.2+build.194"
          },
          {
             "url":"https://maven.fabricmc.net/",
@@ -18,7 +18,7 @@
          },
          {
             "url":"https://maven.fabricmc.net/",
-            "name":"net.fabricmc:tiny-mappings-parser:0.2.0.14"
+            "name":"net.fabricmc:tiny-mappings-parser:0.2.2.14"
          },
          {
             "url":"https://maven.fabricmc.net/",
